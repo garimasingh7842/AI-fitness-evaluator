@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Fitness Evaluator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin: 20px 0;
+    }
+
+    h2 {
+      color: blueviolet;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 1.5rem;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+      padding: 0 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px 5px;
+      font-size: 16px;
+      cursor: pointer;
+      color: orange;
+      background-color: green;
+      border: none;
+      border-radius: 8px;
+      width: 45%;
+      max-width: 200px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+      border: 2px solid #4caf50;
+      border-radius: 10px;
+      display: none;
+      margin: 20px auto;
+      display: block;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      button {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>AI Fitness Evaluator</h1>
+  <img src="https://img.freepik.com/free-photo/side-view-man-portrait-digital-art_23-2151197918.jpg?t=st=1745526613~exp=1745530213~hmac=d969ad1f06dc52de157a8564bd0e13b90b27ec9363f1e109ded0fb957cadee5b&w=1800" alt="Fitness Image" width="100%">
+  
+  <h2 >Select Exercise</h2>
+  <div class="button-container">
+  <button onclick="startExercise('squats')">Start Squats</button>
+  <button onclick="startExercise('pushups')">Start Push-Ups</button>
+   </div>
+  <br><br>
+  <video id="webcam" autoplay playsinline></video>
+
+  <script>
+    const video = document.getElementById("webcam");
+    let streamStarted = false;
+
+    async function startWebcam() {
+      try {
+        // Request webcam access
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+        video.style.display = "block";
+        streamStarted = true;
+        console.log("Camera stream started successfully.");
+      } catch (err) {
+        console.error("Error accessing webcam: ", err);
+        alert("Please allow camera access.");
+      }
+    }
+
+    function startExercise(type) {
+      console.log(`Starting ${type}...`);
+
+      if (!streamStarted) {
+        // Start webcam if not started yet
+        startWebcam();
+      }
+      // Logic for detecting squats or push-ups can be added here later
+      // For now, just output the type
+      alert(`You selected: ${type}`);
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
